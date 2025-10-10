@@ -23,6 +23,19 @@ paths:
       Errors are presented using the HTTP status 400-599. The response include a more detailed
       explanation about the error in the body.
     get:
+      requestBody:
+        description: A new game to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/error'
+            examples:
+              Error:
+                value:
+                  error: >-
+                    Kui sa nägib selline errori sa peab veel kord mõtlema mida sa teeb
+                    sellises maal
+        required: true
       tags:
         - games
       responses:
@@ -42,8 +55,21 @@ paths:
                     - Garry mod
                     - GTA5
           description: application/json
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/new-game'
+          description: Created a new game
+        '400':
+          description: One or all params are missing.
       summary: Get a list of all games
       description: Returns a list of all games in API
+    post:
+      tags:
+        - new-game
+      summary: Creates a game
+      description: Creates a new game
   '/games/:id':
     get:
       tags:
@@ -98,3 +124,20 @@ components:
           type: string
       example:
         error: Error message.
+    new-game:
+      description: new-game
+      required:
+        - name
+        - price
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        price:
+          format: float
+          description: ''
+          type: number
+      example:
+        name: Snake
+        price: 0.99
