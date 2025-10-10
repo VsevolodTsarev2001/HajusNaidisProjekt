@@ -1,0 +1,100 @@
+openapi: 3.0.2
+info:
+  title: Games-API
+  version: 1.0.0
+  description: >-
+    This is a Swagger UI for our Games API
+    
+    
+    Error handling
+    
+    
+    Errors are presented using the HTTP status 400-599. The response include a more detailed explanation
+    about the error in the body.
+paths:
+  /games:
+    description: >-
+      This is a Swagger UI for our Games API
+      
+      
+      Error handling
+      
+      
+      Errors are presented using the HTTP status 400-599. The response include a more detailed
+      explanation about the error in the body.
+    get:
+      tags:
+        - games
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              examples:
+                List of games:
+                  value:
+                    - Witcher 3
+                    - Cyberpunk 2077
+                    - CSgo2
+                    - Garry mod
+                    - GTA5
+          description: application/json
+      summary: Get a list of all games
+      description: Returns a list of all games in API
+  '/games/:id':
+    get:
+      tags:
+        - details
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              examples:
+                Full details of a given id game:
+                  value: |-
+                    [
+                        {id: 1, name: "Witcher 3", price: 0},
+                        {id: 2, name:"Cyberpunk 2077", price: 8.23},
+                        {id: 3, name:"CSgo2", price: 52.52},
+                        {id: 4, name:"GTA5", price: 92.52},
+                        {id: 5, name:"Garry mod", price: 5.21},
+                        {id: 6, name:"Valorant", price: 82.21},
+                        {id: 7, name:"Forza Horizon 5", price: 21.21},
+                        {id: 8, name:"Roblox", price: 12.42},
+                        {id: 9, name:"Minecraft", price: 18.21}
+                    ]
+          description: Returns full details of a given id game
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                Game /w+:
+                  value:
+                    error: Was not found
+                Game \\w+:
+                  value:
+                    error: was not found in game array
+          description: Game was not found in games array.
+      operationId: id
+      summary: Get full details of a games
+      description: Returns full details of a given id game
+components:
+  schemas:
+    error:
+      title: Root Type for error
+      description: Error message
+      type: object
+      properties:
+        error:
+          type: string
+      example:
+        error: Error message.
