@@ -1,0 +1,24 @@
+{
+  "name": "hajusprojeckt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VsevolodTsarev2001/HajusNaidisProjekt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VsevolodTsarev2001/HajusNaidisProjekt/issues"
+  },
+  "homepage": "https://github.com/VsevolodTsarev2001/HajusNaidisProjekt#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
