@@ -113,6 +113,15 @@ paths:
       operationId: id
       summary: Get full details of a games
       description: Returns full details of a given id game
+    delete:
+      requestBody:
+        description: delete-game
+        required: true
+      tags:
+        - details
+      operationId: id
+      summary: Delete full details of a games
+      description: Delete full details of a given id game
 components:
   schemas:
     error:
@@ -141,3 +150,12 @@ components:
       example:
         name: Snake
         price: 0.99
+    delete-game:
+      description: ''
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          description: ''
+          type: string
