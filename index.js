@@ -1,15 +1,29 @@
 const express = require('express');
 const app = express();
+
+const cors = require('cors')
 const port = 8080
 const swaggerUi = require('swagger-ui-express')
 const yamljs = require("yamljs")
 const swaggerDocument = yamljs.load('./docs/swagger.yaml')
 
+const mongoose = require('mongoose');
 const Game = require('./models/game');
 
-const mongoose = require('mongoose');
+const uri = "mongodb+srv://User:12345@cluster0.ucikqrb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-const uri = "mongodb+srv://sevatsarev_db_user:9ECLA6KuGjlv9ueY@cluster0.ucikqrb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+app.use(cors())
+
+app.use(express.json())
+
+app.use(express.static('public'));
+
+app.use((req, res, next) => {
+    console.log('CT:', req.headers['content-type']);
+    console.log('BODY:', req.body);
+    next();
+});
+
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -61,11 +75,13 @@ app.put('/games/:id', async (req, res) => {
 
 app.delete('/games/:id', async (req, res) => {
     try {
-        const game = await Game.findOne({ id: req.params.id });
-        if (!game) return res.status(404).json({ message: 'Game not found' });
+        const result = await Game.deleteOne({ id: parseInt(req.params.id) });
 
-        await game.remove();
-        res.json({ message: 'Game deleted' });
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'Game not found' });
+        }
+
+        res.json({ message: 'Game deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
