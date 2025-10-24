@@ -13,8 +13,12 @@ const gameSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    type: {
+        type: String,
+        required: true
     }
-});
+}, { versionKey: false });
 
 
 module.exports = mongoose.model('Game', gameSchema);

@@ -1,0 +1,300 @@
+:root {
+    --bg: #f5f7fb;
+    --panel: #ffffff;
+    --text: #0f172a;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --primary-600: #1d4ed8;
+    --primary-700: #1e40af;
+    --border: #e5e7eb;
+    --row-hover: #f3f4f6;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --shadow: 0 6px 24px rgba(15, 23, 42, .06), 0 2px 8px rgba(15, 23, 42, .06);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b1020;
+        --panel: #0f172a;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --primary: #3b82f6;
+        --primary-600: #2563eb;
+        --primary-700: #1d4ed8;
+        --border: #1f2a44;
+        --row-hover: #0d1a33;
+        --shadow: 0 8px 28px rgba(0, 0, 0, .35);
+    }
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(1200px 800px at -10% -20%, rgba(37, 99, 235, .08), transparent 60%),
+        radial-gradient(900px 700px at 120% -10%, rgba(99, 102, 241, .07), transparent 60%),
+        var(--bg);
+    color: var(--text);
+    font: 14.5px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+}
+
+/* container */
+.page {
+    max-width: 1040px;
+    margin: 48px auto;
+    padding: 0 20px 56px;
+}
+
+/* headline */
+.headline {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .85), rgba(255, 255, 255, .9)), var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 22px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+}
+
+.headline h1 {
+    margin: 0 0 6px;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: .2px;
+}
+
+.headline p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13.5px;
+}
+
+/* table card */
+.table-wrap {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.scroll-x {
+    overflow-x: auto
+}
+
+/* table */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 720px;
+}
+
+table thead th,
+table tr:first-child th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, #fafafa, #f3f4f6);
+    color: var(--text);
+    text-align: left;
+    font-weight: 700;
+    letter-spacing: .2px;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 14px;
+    font-size: 13.5px;
+}
+
+tbody td,
+table tr:not(:first-child) td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    font-size: 14px;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: background .2s ease, color .2s ease;
+}
+
+/* zebra rows + hover */
+tbody tr:nth-child(odd) {
+    background: rgba(2, 6, 23, .015)
+}
+
+tbody tr:hover {
+    background: var(--row-hover)
+}
+
+/* clickable first cell */
+#gamesTable td:first-child {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#gamesTable td:first-child:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* inputs */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    input[type="text"],
+    input[type="number"] {
+        background: #0b1224;
+        color: var(--text);
+        border-color: #1f2a44;
+    }
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .18);
+}
+
+/* buttons */
+.btn-ghost,
+.btn-primary,
+.btn-secondary {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    border-radius: 10px;
+    padding: 9px 13px;
+    cursor: pointer;
+    font-size: 13.5px;
+    line-height: 1;
+    transition: transform .06s ease, background .2s, border-color .2s, box-shadow .2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .04);
+}
+
+.btn-ghost:hover {
+    background: #f7f8fb
+}
+
+.btn-ghost:active,
+.btn-primary:active,
+.btn-secondary:active {
+    transform: translateY(1px)
+}
+
+.btn-primary {
+    background: linear-gradient(180deg, var(--primary), var(--primary-600));
+    border-color: var(--primary-600);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, .25);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(180deg, var(--primary-600), var(--primary-700));
+    border-color: var(--primary-700);
+}
+
+.btn-secondary {
+    background: #fff
+}
+
+.btn-secondary:hover {
+    background: #f3f4f6
+}
+
+/* compact buttons group in cell */
+td>.btn-primary+.btn-secondary,
+td>.btn-secondary+.btn-primary,
+td>.btn-ghost+.btn-primary,
+td>.btn-ghost+.btn-secondary {
+    margin-left: 8px
+}
+
+/* error text */
+.error {
+    color: var(--danger);
+    margin: 14px 2px 0;
+    font-size: 14px;
+}
+
+/* subtle focus ring for buttons via keyboard */
+:focus-visible {
+    outline: 2px solid rgba(37, 99, 235, .45);
+    outline-offset: 2px;
+    border-radius: 10px;
+}
+
+/* small screens */
+@media (max-width: 640px) {
+    .headline {
+        padding: 18px
+    }
+
+    .headline h1 {
+        font-size: 20px
+    }
+
+    table {
+        min-width: 600px
+    }
+}
+
+/* nice edit row highlight */
+tr:is([data-editing="true"]) td {
+    background: linear-gradient(180deg, rgba(37, 99, 235, .06), transparent 60%);
+}
+
+/* --- Reset для таблицы в модалке, чтобы не наследовала наши гриды --- */
+.modal .table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 0;
+    /* не тянем ширину */
+}
+
+.modal .table th,
+.modal .table td {
+    position: static;
+    /* убираем sticky-эффект */
+    background: #fff;
+    /* белый фон, как в Bootstrap */
+    border-color: #dee2e6;
+    /* стандартный цвет границ BS */
+    padding: .75rem;
+    /* стандартные отступы BS */
+    white-space: normal;
+    /* переносы разрешены */
+    box-shadow: none;
+}
+
+.modal .table tr:nth-child(odd) {
+    background: transparent;
+    /* убираем «зебру» */
+}
+
+.modal .table th {
+    font-weight: 600;
+    color: #212529;
+}
+
+.modal .modal-dialog {
+    max-width: 700px;
+    /* аккуратная ширина, чтобы не выходила за край */
+}
